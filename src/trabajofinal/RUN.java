@@ -8,7 +8,7 @@ package trabajofinal;
 
 /**
  *
- * @author jorge pastrana
+ * @author Marlon AC
  */
 public class RUN {
 

@@ -17,7 +17,7 @@ public class RUN {
      */
     public static void main(String[] args) {
 // se esta haciendo un cambion en el main
-
+System.out.println("hola mundo");
     }
 
 }

@@ -27,21 +27,18 @@ import javax.swing.JOptionPane;
  * @author jorge pastrana
  */
 public class controlador extends javax.swing.JFrame implements ActionListener {
-private Vista.vista view;
+
+    private Vista.vista view;
     private Modelo.Vertice vertice;
-    
+
     Matrices matrices = new Matrices();
     ArrayList<Vertice> panel = new ArrayList<>();
 
-   
-    
-    
-    
     private int pos;
-    
+
     public controlador() {
-       
-        this.pos =0;
+        // this.prueba = new Vertice();
+        this.pos = 0;
         matrices.h = this.view.getGraphics();
         this.view.setTitle("Grafos");
         this.view.setLocationRelativeTo(null);
@@ -53,7 +50,7 @@ private Vista.vista view;
         this.view.setEnabled(false);
     }
 
-    public void inicializa() {
+    public void inicializa() {/// inicializa la matriz , con ceros
         for (int r = 0; r < Matrices.maxN; r++) {
             for (int s = 0; s < Matrices.maxN; s++) {
                 matrices.MAdyacencia[r][s] = false;
@@ -65,9 +62,9 @@ private Vista.vista view;
             }
         }
     }
-    
+
     //*********************************
-    public  void linea(int x, int y, int w, int z) {
+    public void linea(int x, int y, int w, int z) {
         matrices.h.setColor(Color.RED);
         if (x == w && y == z) {
             matrices.h.drawArc(x + 10, y + 5, 20, 30, 320, 290);
@@ -82,9 +79,10 @@ private Vista.vista view;
         matrices.h.drawString(matrices.nombreL[matrices.cl], x, y);
 //        h.drawString(nombreL[cl], ((x + 20 - w + 20) / 2) + w, ((y + 45 - z + 45) / 2) + z);
         matrices.cl++;
+      
     }
-    
-     public void muestraAdyacencia() {
+
+    public void muestraAdyacencia() {
         matrices.matrizAdyacente = "Matriz de Adyacencia  \n\n";
         int tNodos = panel.size();
         int bit = 0;
@@ -146,8 +144,6 @@ private Vista.vista view;
         this.view.Matriz.setText(matriz1 + "\n\n" + matriz2);
     }
     //*************************************
-    
-    
 
     private enum Actions {
         vertice, adyacencia, incidencia, Linea, salir
@@ -199,18 +195,18 @@ private Vista.vista view;
 
         } else if (e.getActionCommand() == Actions.adyacencia.name()) {
 
-           // JOptionPane.showMessageDialog(null, "adyacencia");
-           muestraAdyacencia();
+            // JOptionPane.showMessageDialog(null, "adyacencia");
+            muestraAdyacencia();
 
         } else if (e.getActionCommand() == Actions.incidencia.name()) {
 
             //JOptionPane.showMessageDialog(null, "incidencia");
             Incidencia();
-            
-            
+
         } else if (e.getActionCommand() == Actions.Linea.name()) {
 
             //JOptionPane.showMessageDialog(null, "Linea");
+            linea(pos, pos, pos, pos);
             if (matrices.L) {
                 matrices.L = false;
                 matrices.N = false;
@@ -218,20 +214,19 @@ private Vista.vista view;
                 view.btnVertice.setBackground(null);
                 view.btnLinea.setBackground(null);
             } else {
-                
+
                 matrices.N = false;
                 matrices.L = true;
                 view.btnLinea.setBackground(Color.decode("#79f966"));
                 view.btnVertice.setBackground(null);
                 view.lblEstado.setText("Arista Activo");
-                
+
             }
-            
 
         } else if (e.getActionCommand() == Actions.salir.name()) {
 
             //JOptionPane.showMessageDialog(null, "salir");
-             System.exit(0);
+            System.exit(0);
         }
 
     }
@@ -248,13 +243,12 @@ private Vista.vista view;
                     Vertice prueba = new Vertice();
                     prueba.setBounds(p.x - 15, p.y - 10, 31, 31);
                     view.panelView.add(prueba);
-                   // pos ++;
+                    // pos ++;
                     panel.add(prueba);
                     prueba.dibuja(prueba.getGraphics());
                 }
             }
         }
     }
-    
 
 }
